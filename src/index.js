@@ -1,8 +1,19 @@
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import PlayerReducer from './reducers/player';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {App} from './App';
+import Scoreboard from './Container/Scoreboard';
 import registerServiceWorker from './registerServiceWorker';
-import {PLAYERS} from './App';
 
-ReactDOM.render(<App initialPlayers={PLAYERS}/>, document.getElementById('root'));
+
+const store=createStore(PlayerReducer,
+    window.devToolsExtension && window.devToolsExtension());
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Scoreboard />
+    </Provider>, 
+    document.getElementById('root'));
 registerServiceWorker();
